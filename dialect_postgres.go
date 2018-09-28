@@ -66,6 +66,10 @@ func (s *postgres) DataTypeOf(field *StructField) string {
 			if dataValue.Type().Name() == "Hstore" {
 				sqlType = "hstore"
 			}
+		case reflect.Array:
+			if dataValue.Type().Name() == "Point" {
+				sqlType = "geometry(Point,4326)"
+			}
 		default:
 			if IsByteArrayOrSlice(dataValue) {
 				sqlType = "bytea"
