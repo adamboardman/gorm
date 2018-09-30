@@ -70,7 +70,7 @@ func (s *postgres) DataTypeOf(field *StructField) string {
 			if dataValue.Type().Name() == "Point" {
 				sqlType = "geometry(Point,4326)"
 			}
-			if dataValue.Type().Name() == "WeeklyHours" {
+			if dataValue.Type().Name() == "WeeklyMinutes" {
 				sqlType = "integer[][]"
 			}
 		default:
