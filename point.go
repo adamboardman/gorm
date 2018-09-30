@@ -28,6 +28,10 @@ func (p *Point) String() string {
 	return fmt.Sprintf("SRID=4326;POINT(%g %g)", p[0], p[1])
 }
 
+func (p Point) Value() (driver.Value, error) {
+	return p.String(), nil
+}
+
 func (p *Point) Scan(val interface{}) error {
 	b, err := hex.DecodeString(string(val.([]uint8)))
 	if err != nil {
@@ -59,8 +63,4 @@ func (p *Point) Scan(val interface{}) error {
 	}
 
 	return nil
-}
-
-func (p Point) Value() (driver.Value, error) {
-	return p.String(), nil
 }
